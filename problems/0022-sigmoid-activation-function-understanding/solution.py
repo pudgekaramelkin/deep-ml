@@ -1,5 +1,4 @@
 import torch
-import numpy as np
 
 def sigmoid(z: float) -> float:
     """
@@ -9,5 +8,5 @@ def sigmoid(z: float) -> float:
     Returns:
       - sigmoid(z) as Python float rounded to 4 decimals.
     """
-    result = 1 / (1 + np.exp(-z))
-    return result.item()
+    result = 1 / (1 + torch.exp(torch.tensor(-z)))
+    return round(result.item(), 4)
