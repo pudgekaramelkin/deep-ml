@@ -1,4 +1,4 @@
-def matrixmul(a:list[list[int|float]],
+def matrixmul_manual(a:list[list[int|float]],
               b:list[list[int|float]])-> list[list[int|float]]:
 
     p1 = len(a[0])
@@ -16,7 +16,7 @@ def matrixmul(a:list[list[int|float]],
 
 import numpy as np
 
-def matrixmul_np(a:list[list[int|float]],
+def matrixmul(a:list[list[int|float]],
               b:list[list[int|float]])-> list[list[int|float]]:
 
     a = np.asarray(a)
