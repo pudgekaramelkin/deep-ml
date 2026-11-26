@@ -1,21 +1,20 @@
 def calculate_covariance_matrix(vectors: list[list[float]]) -> list[list[float]]:
-    n = len(vectors[0])
+    n_features = len(vectors)
+    n_obs = len(vectors[0])
 
-    centered = []
+    means = [sum(feature) / n_obs for feature in vectors]
 
-    for vector in vectors:
-        mean = sum(vector) / n
-        centered.append([x - mean for x in vector])
+    cov_matrix = [[0.0] * n_features for _ in range(n_features)]
 
-    result = []
+    for i in range(n_features):
+        for j in range(i, n_features):
+            cov = sum(
+                (vectors[i][k] - means[i]) * (vectors[j][k] - means[j])
+                for k in range(n_obs)
+            ) / (n_obs - 1)
 
-    for x in centered:
-        row = []
+            cov_matrix[i][j] = float(cov)
+            cov_matrix[j][i] = float(cov)
 
-        for y in centered:
-            cov = sum(a * b for a, b in zip(x, y)) / (n - 1)
-            row.append(cov)
+    return cov_matrix
 
-        result.append(row)
-
-    return result
