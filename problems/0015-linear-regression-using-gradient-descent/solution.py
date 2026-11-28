@@ -24,3 +24,24 @@ def linear_regression_gradient_descent(X: np.ndarray, y: np.ndarray, alpha: floa
         theta = theta - alpha * gradient
 
     return theta.flatten()
+
+from sklearn.linear_model import SGDRegressor
+
+def linear_regression_gradient_descent_sklearn(X: np.ndarray, y: np.ndarray, alpha: float, iterations: int) -> np.ndarray:
+    """
+    Perform linear regression using gradient descent.
+
+    Args:
+        X: Feature matrix of shape (m, n) where first column is all ones (for intercept)
+        y: Target vector of shape (m,)
+        alpha: Learning rate
+        iterations: Number of gradient descent iterations
+    
+    Returns:
+        Learned weights as a 1D array of shape (n,)
+    """
+    model = SGDRegressor(fit_intercept=False, learning_rate='constant', max_iter=iterations, eta0=alpha, penalty=None, tol=None, shuffle=False)
+    
+    model.fit(X, y)
+
+    return model.coef_
