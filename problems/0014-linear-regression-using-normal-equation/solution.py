@@ -1,5 +1,4 @@
 import numpy as np
-from sklearn.linear_model import LinearRegression
 
 def linear_regression_normal_equation_numpy(X: list[list[float]], y: list[float]) -> list[float]:
     X_formatted = np.array(X)
@@ -9,6 +8,8 @@ def linear_regression_normal_equation_numpy(X: list[list[float]], y: list[float]
     theta = np.round(theta, 4)
 
     return theta.tolist()
+
+from sklearn.linear_model import LinearRegression
 
 def linear_regression_normal_equation(X: list[list[float]], y: list[float]) -> list[float]:
     model = LinearRegression(fit_intercept=False)
